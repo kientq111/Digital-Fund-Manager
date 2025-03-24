@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/components/ui/use-toast"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { CloudCog } from "lucide-react"
 
 const formSchema = z.object({
   email: z.string().email({
@@ -34,13 +35,13 @@ export function LoginForm() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
+    console.log(values)
 
     const signInResult = await signIn("credentials", {
       email: values.email,
       password: values.password,
       redirect: false,
     })
-
     setIsLoading(false)
 
     if (!signInResult?.ok) {

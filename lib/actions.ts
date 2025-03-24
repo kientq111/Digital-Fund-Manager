@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { db } from "@/lib/db";
 import bcrypt from "bcrypt";
+import { hash } from "crypto";
 
 export async function createUser(data: {
   name: string;
@@ -18,12 +19,15 @@ export async function createUser(data: {
     throw new Error("Email already exists");
   }
 
+  const defaultHashPassword = await bcrypt.hash('12345678', 10);
+
   await db.user.create({
     data: {
       name: data.name,
       email: data.email,
       role: data.role,
       balance: 0,
+      password: defaultHashPassword,
     },
   });
 
