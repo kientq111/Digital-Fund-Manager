@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata = {
   title: "User Money Management",
   description: "Manage users and their finances",
-    generator: 'v0.dev'
+  generator: 'Kendev'
 }
 
 export default function RootLayout({

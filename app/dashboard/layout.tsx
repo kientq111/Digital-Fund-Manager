@@ -3,6 +3,9 @@ import Link from "next/link"
 import { DashboardNav } from "@/components/dashboard-nav"
 import { getAuthSession } from "@/app/api/auth/[...nextauth]/options"
 import { redirect } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import { LogOut } from "lucide-react"
+import { SignOutButton } from "@/components/auth/sign-out-button"
 
 export default async function DashboardLayout({
   children,
@@ -24,9 +27,17 @@ export default async function DashboardLayout({
               <span className="hidden font-bold sm:inline-block">Money Manager</span>
             </Link>
           </div>
-          <span className="hidden font-bold sm:inline-block">
-            Hello {session.user.name}
-          </span>
+          <div className="flex items-center gap-4">
+            <span className="hidden font-bold sm:inline-block">
+              Hello {session.user.name}
+            </span>
+            <SignOutButton>
+              <Button variant="outline" size="sm">
+                <LogOut className="mr-2 h-4 w-4" />
+                Logout
+              </Button>
+            </SignOutButton>
+          </div>
         </div>
       </header>
       <div className="container grid flex-1 gap-12 md:grid-cols-[200px_1fr]">
